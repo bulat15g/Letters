@@ -8,6 +8,7 @@
 #include <fstream>
 
 int const dimention=8;
+int const depth=2;
 
 class Letter{
 public:
@@ -61,7 +62,7 @@ public:
     void fillRandLetter(){
         for (int i = 0; i < dimention; ++i) {
             for (int j = 0; j < dimention; ++j) {
-                image[i][j]=rand()%2;
+                image[i][j]=rand()%depth;
             }
         }
     }

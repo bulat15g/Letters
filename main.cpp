@@ -13,5 +13,9 @@ int main() {
     test2Letter.showLetter();
 
     cout<<testLetter.compare(test2Letter.image);
+
+    testLetter.writeToFile("Primitives/ME");
+
+
     return 0;
 }
