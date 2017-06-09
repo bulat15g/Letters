@@ -5,10 +5,10 @@
 #ifndef UNTITLED_LETTER_H
 #define UNTITLED_LETTER_H
 
-#include <fstream>
 
 int const dimention=8;
 int const depth=2;
+int const finddepth=3;
 
 class Letter{
 public:
@@ -87,6 +87,7 @@ public:
             }
         }
         in.close();
+//        delete in;
     }
 
     void writeToFile(string name){
@@ -99,9 +100,12 @@ public:
             out<<endl;
         }
         out.close();
+//        delete out;
     }
 
-
+//    ~Letter(){
+//        delete[] image;
+//    }
 
 };
 

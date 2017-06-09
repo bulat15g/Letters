@@ -1,20 +1,16 @@
-#include <iostream>
+#include "iostream"
 using namespace std;
+#include "fstream"
+#include "string"
 #include "Letter.h"
+#include "Dialog.h"
+
 
 int main() {
     srand(time(0));
-    Letter testLetter,test2Letter;
+    Dialog test;
+    test.makeDialog();
 
-    testLetter.fillRandLetter();
-    testLetter.showLetter();
-
-    test2Letter.fillRandLetter();
-    test2Letter.showLetter();
-
-    cout<<testLetter.compare(test2Letter.image);
-
-    testLetter.writeToFile("Primitives/ME");
 
 
     return 0;
