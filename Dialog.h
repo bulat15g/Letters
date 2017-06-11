@@ -71,10 +71,8 @@ public:
                         }
 
                         //сверка по конкретной букве
-                        cout<<localCountFiles<<"     count files"<<currentLetter<<endl;
-                        //КРАШ ТУТ НА 2 букве
+                        if(localCountFiles>=1)
                         for (int j = 1; j <= localCountFiles; ++j) {
-                            cout<<"FUCKEN SHET and    "<<endl;
 
                             toComparsion.readFromFile((parseLetToCommand(currentLetter)+to_string(j)));
                             currentCompare=toComparsion.compare(in.image);
@@ -92,14 +90,22 @@ public:
                                 }
                             }
                         }
-//
-                        localStatstics[finddepth]/=localCountFiles;
-                        for (int m = 0; m < finddepth + 1; ++m) {
-                            statistics[i][m]=localStatstics[m];
+
+                        if(localCountFiles!=0){
+                            localStatstics[finddepth]/=localCountFiles;
+                            for (int m = 0; m < finddepth + 1; ++m) {
+                                statistics[i][m]=localStatstics[m];
+                            }
+                        }
+                        else{
+                            for (int m = 0; m < finddepth + 1; ++m) {
+                                statistics[i][m]=0;
+                            }
                         }
 
+
                     }
-                    cout<<"aaand im here";
+
                     for (int i = 0; i < 26; ++i) {
                         for (int j = 0; j < finddepth + 1; ++j) {
                             cout<<statistics[i][j]<<"     ";
