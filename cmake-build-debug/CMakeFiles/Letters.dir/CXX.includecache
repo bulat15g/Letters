@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bulat15g/Documents/projects/Letters/Dialog.h
+dirent.h
+/home/bulat15g/Documents/projects/Letters/dirent.h
+
+/home/bulat15g/Documents/projects/Letters/Letter.h
+
+/home/bulat15g/Documents/projects/Letters/main.cpp
+iostream
+/home/bulat15g/Documents/projects/Letters/iostream
+fstream
+/home/bulat15g/Documents/projects/Letters/fstream
+string
+/home/bulat15g/Documents/projects/Letters/string
+Letter.h
+/home/bulat15g/Documents/projects/Letters/Letter.h
+Dialog.h
+/home/bulat15g/Documents/projects/Letters/Dialog.h
+

@@ -22,7 +22,6 @@ public:
             switch (command) {
                 case 1: {
 
-
                     Letter in;char let;bool rand=false;
                     string fileName,addCommand;
 
@@ -54,16 +53,16 @@ public:
                     Letter in;in.readFromFile(fileName);
                     Letter toComparsion;
 
-                    int statistics[26][finddepth+1];
-                    int localStatstics[finddepth+1];
-                    int currentCompare;
+                    double statistics[26][finddepth+1];
+                    double localStatstics[finddepth+1];
+                    double currentCompare;
 
                     char currentLetter=(char)97;
                     int localCountFiles;
 
                     //сверка общая(по буквам)
                     for (int i = 0; i < 26; ++i) {
-                        currentLetter=(char)(97+i);
+                        currentLetter=intToEnglishChar(i);
 
                         localCountFiles=FilesCountInDirectory(parseLetToCommand(currentLetter));
                         for (int buff = 0; buff < finddepth + 1; ++buff) {
@@ -80,17 +79,17 @@ public:
                             localStatstics[finddepth]+=currentCompare;
                             //далее,если сравнение более удачное,то идет замена предыдущих результатов
 
-                            for (int k = 0; k < finddepth-1; ++k) {
+                            bool offsetSucces= false;
+                            for (int k = 0;((k < finddepth-1)&&!offsetSucces); ++k) {
                                 if(currentCompare>localStatstics[k]){
-                                    //сдвиг
-                                    for (int l = finddepth-1; l >k ; --l) {
-                                        localStatstics[l]=localStatstics[l-1];
-                                    }
-                                    localStatstics[k]=currentCompare;
+                                    offsetRightLocalStatistics(localStatstics,k,finddepth+1,currentCompare);
+                                    offsetSucces= true;
+
                                 }
                             }
                         }
 
+                        //ввод в общую статистику
                         if(localCountFiles!=0){
                             localStatstics[finddepth]/=localCountFiles;
                             for (int m = 0; m < finddepth + 1; ++m) {
@@ -110,7 +109,7 @@ public:
                         for (int j = 0; j < finddepth + 1; ++j) {
                             cout<<statistics[i][j]<<"     ";
                         }
-                        cout<<"  "<<(char)(97+i)<<endl;
+                        cout<<"  "<<intToEnglishChar(i)<<endl;
                     }
 
                     break;
@@ -124,6 +123,14 @@ public:
             }
 
         }
+    }
+
+    //123 ->112
+    void offsetRightLocalStatistics(double mybuff[],int currentIndex,int Size,double currentCompare){
+        for (int i = Size-2; i <= currentIndex; --i) {
+            mybuff[i]=mybuff[i-1];
+        }
+        mybuff[currentIndex]=currentCompare;
     }
 
     string parseToAdd(string addCommand){
@@ -143,7 +150,6 @@ public:
         return addCommand;
     }
 
-
     int FilesCountInDirectory(string directoryName){
 
         int filecount=0;
@@ -154,6 +160,20 @@ public:
             if (entry->d_type==DT_REG) filecount++;
         }
         return filecount;
+    }
+
+    void fillRandLetters(int numberOfFillment){
+        Letter in;
+        char let;
+        for (int i = 0; i < numberOfFillment; ++i) {
+            in.fillRandLetter();
+            let=(char)(97+rand()%26);\
+            in.writeToFile(parseToAdd(parseLetToCommand(let)));
+        }
+    }
+
+    char intToEnglishChar(int i){
+        return (char)(97+i);
     }
 
 
